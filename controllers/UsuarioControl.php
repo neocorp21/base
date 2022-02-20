@@ -18,7 +18,7 @@ class UsuarioControl
   }
 
   //VISTA POR DEFECTO
-  public function index()
+  public function home()
   {
     include_once('views/home.php');
   }

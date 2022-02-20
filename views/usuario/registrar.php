@@ -43,7 +43,7 @@
 
         
 
-            <p class="form_paragraph">¿Ya tienes cuenta?<a href="#" class="form_link"> Login</a></p>
+            <p class="form_paragraph">¿Ya tienes cuenta?<a href="./index.php?c=iniciarSesion" class="form_link"> Iniciar Sesion </a></p>
 
             <input type="submit" class="form_submit" value="Entrar">
           

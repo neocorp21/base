@@ -1883,7 +1883,7 @@ progress {
     --bs-table-hover-color: #495057;
     --bs-table-hover-bg: rgba(0, 0, 0, 0.038);
     border-color: #dee2e6;
-    color: #495057;
+    color:  var(--vladi);
     margin-bottom: 1rem;
     vertical-align: top;
     width: 100%

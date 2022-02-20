@@ -36,7 +36,7 @@ class UsuarioDAO
   public function registrar(UsuarioClass $data)
   {
     try {
-      $query = "INSERT INTO usuario ( correo, clave, nombre, dni) VALUES ( ?, ?, ?, ? );";
+      $query = "INSERT INTO usuario ( correo, clave, nombre, dni,saldoactual,saldoaqu) VALUES ( ?, ?, ?, ?,0,0 );";
       $stm = $this->PDO->ConectarBD()->prepare($query)->execute(
         array(
           $data->getCorreo() ,

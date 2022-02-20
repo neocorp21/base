@@ -18,7 +18,7 @@
         
         <div class="form_container">
             <div class="form_group">
-                <input type="text" id="name" class="form_input" placeholder=" ">
+                <input type="email" id="name" class="form_input" placeholder=" " required:>
                 <label for="name" class="form_label">Correo Electronico:</label>
                 <span class="form_line"></span>
             </div>
@@ -26,14 +26,14 @@
            
 
             <div class="form_group">
-                <input type="text" id="password" class="form_input" placeholder=" ">
+                <input type="text" id="password" class="form_input" placeholder=" " required:>
                 <label for="name" class="form_label">Contraseña:</label>
                 <span class="form_line"></span>
             </div>
 
         
 
-            <p class="form_paragraph">¿Aun no tienes cuenta?<a href="#" class="form_link"> Registrate</a></p>
+            <p class="form_paragraph">¿Aun no tienes cuenta?<a href="./index.php?c=nuevo"class="form_link"> Registrate</a></p>
 
             <input type="submit" class="form_submit" value="Entrar">
         
