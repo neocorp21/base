@@ -22,23 +22,34 @@ class UsuarioControl
   {
     include_once('views/home.php');
   }
+  //FORMULARIO REGISTRO
+  public function nuevo()//Cliente
+  {
+    include_once('views/usuario/registrar.php');
+   }
+  public function iniciarSesion()//Cliente
+  {
+    include_once('views/usuario/iniciarSesion.php');
+  }
+  public function perfil()//Cliente
+  {
+    include_once('views/usuario/perfil.php');
+  }
 
-  public function lista()
+  public function billetera()//Cliente
+  {
+    include_once('views/usuario/billetera.php');
+  }
+
+
+  public function lista()//ADMIN
   {
     include_once('views/administrador/index.php');
   }
 
 
-  //FORMULARIO REGISTRO
-  public function nuevo()
-  {
-    include_once('views/usuario/registrar.php');
-  }
-  public function perfil()
-  {
-    include_once('views/usuario/perfil.php');
-  }
-
+ 
+  
   //GUARDAR 
   public function guardar()
   {

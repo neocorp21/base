@@ -13,10 +13,13 @@
           <a class="nav-link" href="index.php?c=nuevo">Registrar</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?c=lista">Lista</a>
+          <a class="nav-link" href="index.php?c=iniciarSesion">InicirSesion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/views/administrador/">Admin</a>
+          <a class="nav-link" href="index.php?c=lista">Administrador</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?c=billetera">billetera</a>
         </li>
       </ul>
     </div>
