@@ -1,58 +1,60 @@
 <?php include_once('views/templates/header.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-<?php include_once('views/templates/nav.php'); ?>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title> Registro de Usuarios</title>
+    <link rel="stylesheet" href="css/estilos.css"> <!--registro-->
 
-<section class="">
-    <div class="container">
-        <div class="my-5">
-            <h2 class="text-center">Registro de Zapatos</h2>
-        </div>
 
-        <div class="row">
-            <div class="col-md-10 mx-auto">
-                <div><a class="btn-cliente" href="?c=lista">Registros</a></div>
-                <div class="card">
-                    <div class="card-body">
-                        <form action="?c=guardar" enctype="multipart/form-data" method="POST">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    
-
-                                <div class="form-group">
-                                        <label for="">nombre</label>
-                                        <input type="text" class="form-control" placeholder="corre" name="txtcorreo">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">nombre</label>
-                                        <input type="text" class="form-control" placeholder="clave" name="txtclave">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">nombre</label>
-                                        <input type="text" class="form-control" placeholder="nombre" name="txtnombre">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">nombre</label>
-                                        <input type="text" class="form-control" placeholder="foto" name="txtfoto">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">nombre</label>
-                                        <input type="text" class="form-control" placeholder="telefono" name="txttelefono">
-                                    </div>
-                                    
-                                </div>
- 
-
-                                    <div class="mt-2">
-                                        <input type="submit" class="btn btn-success my-3" name="btnregistrar" value="Registrar Producto">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+</head>
+<body>
+        <form class="form"  action="?c=guardar" enctype="multipart/form-data" method="POST">
+        <h2 class="form_title">Crear Cuenta</h2>
+        <img src="imagenes/logo_aqku.png" width="150" height="150" margin bottom="150" >
+       
+           <div class="form_container">
+            <div class="form_group">
+                <input type="email"  name="txtcorreo" class="form_input" placeholder=" ">
+                <label for="name" class="form_label">Correo Electronico:</label>
+                <span class="form_line"></span>
             </div>
-        </div>
-    </div>
-</section>
 
-<?php include_once('views/templates/footer.php'); ?>
+            <div class="form_group">
+                <input type="text"  name="txtnombre" class="form_input" placeholder=" ">
+                <label for="name" class="form_label">Nombre:</label>
+                <span class="form_line"></span>
+            </div>
+
+            <div class="form_group">
+                <input type="password"  name="txtclave"   class="form_input" placeholder="  ">
+                <label for="name" class="form_label">Contraseña:</label>
+                <span class="form_line"></span>
+            </div>
+
+            <div class="form_group">
+                <input type="text"  name="txtdni"  class="form_input" placeholder=" ">
+                <label for="name" class="form_label">DNI:</label>
+                <span class="form_line"></span>
+            </div>
+
+        
+
+            <p class="form_paragraph">¿Ya tienes cuenta?<a href="#" class="form_link"> Login</a></p>
+
+            <input type="submit" class="form_submit" value="Entrar">
+          
+        
+        </div>
+    
+    </form>
+
+
+</body>
+
+
+
+</html>

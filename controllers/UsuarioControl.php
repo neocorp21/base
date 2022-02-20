@@ -47,8 +47,8 @@ class UsuarioControl
                 $alm->setCorreo($_POST['txtcorreo']); 
                 $alm->setClave($_POST['txtclave']); 
                 $alm->setNombre($_POST['txtnombre']); 
-                $alm->setFoto($_POST['txtfoto']); 
-                $alm->setTelefono($_POST ['txttelefono']); 
+                $alm->setdni($_POST['txtdni']); 
+             
                 $alm->setSaldoActual(0); 
                 $alm->setSaldoAqu(0); 
                 // 

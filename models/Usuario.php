@@ -11,8 +11,8 @@ class UsuarioClass
     private $correo;
     private $clave;
     private $nombre;
-    private $foto;
-    private $telefono;
+    private $dni;
+  
     private $saldoactual;
     private $saldoaqu;
 
@@ -22,8 +22,8 @@ class UsuarioClass
         $this->correo = "";
         $this->clave = "";
         $this->nombre   = "";
-        $this->foto   = "";
-        $this->telefono   = "";
+        $this->dni   = "";
+       
         $this->saldoactual   = 0;  
         $this->saldoaqu   = 0;
     }
@@ -58,18 +58,12 @@ class UsuarioClass
         $this->nombre = $nombre;
     }
 
-    function getFoto(){
-        return $this->foto;
+    function getDni(){
+        return $this->dni;
     }
-    function setFoto($foto){
-        $this->foto = $foto;
-    }
-    function getTelefono(){
-        return $telefono->telefono;
-    }
-    function setTelefono($telefono){
-        $this->telefono = $telefono;
-    }
+    function setDni($dni){
+        $this->dni = $dni;
+    } 
     function getSaldoActual(){
         return $this->saldoactual;
     }
