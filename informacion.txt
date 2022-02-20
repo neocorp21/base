@@ -1,1 +1,7 @@
-<!--registro-->estilo.css para usuario , registro
+<!--registro.php-->estilo.css para usuario ,
+<!--perfil.php-->estilo1.css para usuario , 
+
+------
+admin 
+Carpeta css -- app.css
+Carpeta js -- app.js

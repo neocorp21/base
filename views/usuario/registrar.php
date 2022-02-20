@@ -1,4 +1,4 @@
-<?php include_once('views/templates/header.php'); ?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>

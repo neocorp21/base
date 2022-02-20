@@ -25,7 +25,7 @@ class UsuarioControl
 
   public function lista()
   {
-    include_once('views/usuario/lista.php');
+    include_once('views/administrador/index.php');
   }
 
 
@@ -34,13 +34,15 @@ class UsuarioControl
   {
     include_once('views/usuario/registrar.php');
   }
-
+  public function perfil()
+  {
+    include_once('views/usuario/perfil.php');
+  }
 
   //GUARDAR 
   public function guardar()
   {
-   
-  
+ 
               try {
                 $alm = new UsuarioClass(); //INSTANCIA DE MI CLASE EntiedadClass para el uso de metodos set
                 
