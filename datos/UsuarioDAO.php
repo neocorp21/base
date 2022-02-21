@@ -35,37 +35,86 @@ class UsuarioDAO
 
   public function registrar(UsuarioClass $data)
   {
+
+
     try {
       $query = "INSERT INTO usuario ( correo, clave, nombre, dni,saldoactual,saldoaqu) VALUES ( ?, ?, ?, ?,0,0 );";
       $stm = $this->PDO->ConectarBD()->prepare($query)->execute(
         array(
-          $data->getCorreo() ,
-          $data->getClave(), 
-          $data->getNombre(), 
-          $data->getDni() 
+          $data->getCorreo(),
+          $data->getClave(),
+          $data->getNombre(),
+          $data->getDni()
         )
+
       );
+
       return $stm;
     } catch (\Throwable $th) {
       throw $th;
     }
   }
- 
 
-  public function success($message ="") {
+
+  public function CorreoExiste($correo)
+  {
+    try {
+      $query = "SELECT * FROM usuario WHERE correo='$correo'";
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      if ($stm->rowcount() == 0) {
+        return false;
+      } else
+        return true;
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+
+
+  public function login_($correo,$clave )
+  {
+    try {
+
+
+      $stmt =  $this->PDO->ConectarBD()->prepare("SELECT * FROM usuario WHERE correo='$correo'and clave='$clave'");
+       $stmt->execute();
+      $rows = $stmt->rowCount();
+
+      if ($rows > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        session_start();
+        $_SESSION['nombreUsuario'] = $row['nombre'];
+        $_SESSION['correoUsuario'] = $row['correo'];
+        $_SESSION['dniUsuario'] = $row['dni'];
+        
+      }else
+      {
+        header('Location: index.php?c=iniciarSesion');
+      }
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+
+  public function success($message = "")
+  {
     $resultado = '
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Message!</strong> '.$message.'
+    <strong>Message!</strong> ' . $message . '
          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     ';
     echo $resultado;
   }
 
-  public function error($message='') {
+  public function error($message = '')
+  {
     $resultado = '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-         <strong>Message!</strong> '.$message.'
+         <strong>Message!</strong> ' . $message . '
          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     ';

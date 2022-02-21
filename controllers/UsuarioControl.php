@@ -23,72 +23,90 @@ class UsuarioControl
     include_once('views/home.php');
   }
   //FORMULARIO REGISTRO
-  public function nuevo()//Cliente
+  public function nuevo() //Cliente
   {
     include_once('views/usuario/registrar.php');
-   }
-  public function iniciarSesion()//Cliente
+  }
+  public function iniciarSesion() //Cliente
   {
     include_once('views/usuario/iniciarSesion.php');
   }
-  public function perfil()//Cliente
+  public function perfil() //Cliente
   {
     include_once('views/usuario/perfil.php');
   }
 
-  public function billetera()//Cliente
+  public function billetera() //Cliente
   {
     include_once('views/usuario/billetera.php');
   }
 
 
-  public function lista()//ADMIN
+  public function lista() //ADMIN
   {
     include_once('views/administrador/index.php');
   }
 
 
- 
-  
+
+
   //GUARDAR 
   public function guardar()
   {
- 
-              try {
-                $alm = new UsuarioClass(); //INSTANCIA DE MI CLASE EntiedadClass para el uso de metodos set
-                
-                $alm->setCorreo($_POST['txtcorreo']); 
-                $alm->setClave($_POST['txtclave']); 
-                $alm->setNombre($_POST['txtnombre']); 
-                $alm->setdni($_POST['txtdni']); 
-             
-                $alm->setSaldoActual(0); 
-                $alm->setSaldoAqu(0); 
-                // 
-                $resultado = $this->MODEL->registrar($alm);
-                if ($resultado) {
-                  $msg = "Correctamente";
-                  echo $this->MODEL->success($msg);
-                 include_once('views/usuario/lista.php');
-                } 
-               else {
-                  $msg = "No se guardo el archivo";
-                  echo $this->MODEL->error($msg);
-                  include_once('views/usuario/lista.php');
-                }
 
+    try {
+      $alm = new UsuarioClass(); //INSTANCIA DE MI CLASE EntiedadClass para el uso de metodos set
+      $alm->setCorreo($_POST['txtcorreo']);
+      $alm->setClave($_POST['txtclave']);
+      $alm->setNombre($_POST['txtnombre']);
+      $alm->setdni($_POST['txtdni']);
+      $alm->setSaldoActual(0);
+      $alm->setSaldoAqu(0);
+      $correo = $_POST['txtcorreo'];
+      $resultado = $this->MODEL->CorreoExiste($correo);
 
-              } catch (\Throwable $th) {
-                throw $th;
-              }
-
-            
-         
-     
-       
-     
+      if ($resultado != true) {
+        $resultado1 = $this->MODEL->registrar($alm);
+        if ($resultado1) {
+          $msg = "Correctamente";
+          echo $this->MODEL->success($msg);
+          include_once('views/usuario/lista.php');
+        } else {
+          $msg = "No se guardo el archivo";
+          echo $this->MODEL->error($msg);
+        }
+      } else {
+        $msg = "correo existe";
+        echo $this->MODEL->error($msg);
+        include_once('views/usuario/registrar.php');
+      }
+    } catch (\Throwable $th) {
+      throw $th;
+    }
   }
- 
 
-   
+  public function Log()
+  {
+
+    try {
+      $correo=$_POST['txtcorreo'];
+      $clave=$_POST['txtclave'];
+      $resultado = $this->MODEL->login_($correo,$clave);
+      include_once('views/usuario/perfil.php');
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+
+  public function cerrarSesion()
+  {
+
+    session_start();
+    session_destroy();
+    include_once('views/usuario/iniciarSesion.php');
+
+  }
+
+ 
 }

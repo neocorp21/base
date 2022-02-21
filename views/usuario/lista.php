@@ -8,9 +8,6 @@
           <div class="card-header"> <H1>  Datos del Usuario</H1>   </div>
           
         </div>
-
-
- 
  
 <table class="table table-bordered">
   <thead class="thead-dark">
