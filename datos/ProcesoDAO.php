@@ -6,7 +6,7 @@ include_once('./config/Conexion.php');
 //modelo - entidad 
 include_once('./models/Proceso.php');
 
-class UsuarioDAO
+class ProcesoDAO
 {
 
   public $PDO;

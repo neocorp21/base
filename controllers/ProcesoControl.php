@@ -1,21 +1,21 @@
 <?php
 
 //IMPORTANDO datos-Consulta SQL
-include_once('./datos/UsuarioDAO.php');
  
+include_once('./datos/ProcesoDAO.php');
 //IMPORTANDO MODELOS-ENTIDAD
-include_once('./models/Usuario.php');
  
+include_once('./models/Proceso.php');
 
-class UsuarioControl
+class ProcesoControl
 {
 
-  public $MODEL;
+  public $MODEL1;
 
 
   public function __construct()
   {
-    $this->MODEL = new UsuarioDAO(); //INSTANCIA DE SQL
+    $this->MODEL1 = new ProcesoDAO(); //INSTANCIA DE SQL
     
   }
 
@@ -82,7 +82,7 @@ class UsuarioControl
       throw $th;
     }
   }
-/*
+
    //GUARDAR 
    public function guardarProceso()
    {
@@ -119,7 +119,7 @@ class UsuarioControl
        throw $th;
      }
    }
-*/
+
   public function Log()
   {
 
