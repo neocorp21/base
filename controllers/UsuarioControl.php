@@ -17,20 +17,16 @@ class UsuarioControl
     $this->MODEL = new UsuarioDAO(); //INSTANCIA DE SQL
   }
 
-  //VISTA POR DEFECTO
-  public function home()
+  public function iniciarSesion() //Cliente
   {
-    include_once('views/home.php');
+    include_once('views/usuario/iniciarSesion.php');
   }
   //FORMULARIO REGISTRO
   public function nuevo() //Cliente
   {
     include_once('views/usuario/registrar.php');
   }
-  public function iniciarSesion() //Cliente
-  {
-    include_once('views/usuario/iniciarSesion.php');
-  }
+   
   public function perfil() //Cliente
   {
     include_once('views/usuario/perfil.php');
@@ -40,7 +36,10 @@ class UsuarioControl
   {
     include_once('views/usuario/billetera.php');
   }
-
+  public function tablero() //Cliente
+  {
+    include_once('views/usuario/tablero.php');
+  }
 
   public function lista() //ADMIN
   {
@@ -70,7 +69,7 @@ class UsuarioControl
         if ($resultado1) {
           $msg = "Correctamente";
           echo $this->MODEL->success($msg);
-          include_once('views/usuario/lista.php');
+         // include_once('views/usuario/lista.php');
         } else {
           $msg = "No se guardo el archivo";
           echo $this->MODEL->error($msg);
@@ -92,7 +91,7 @@ class UsuarioControl
       $correo=$_POST['txtcorreo'];
       $clave=$_POST['txtclave'];
       $resultado = $this->MODEL->login_($correo,$clave);
-      include_once('views/usuario/perfil.php');
+      include_once('views/usuario/billetera.php');
     } catch (\Throwable $th) {
       throw $th;
     }

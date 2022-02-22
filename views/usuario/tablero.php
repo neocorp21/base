@@ -6,32 +6,18 @@ if (!isset($_SESSION)) {
 
 ?>
 
+<p><b>Transacciones</b></p>
 
-
-<p class="page-title">Billetera Inteligente</p>
-<div class="form_group">
-    <div class="amount-box text-center">
-        <img src="imagenes/logo_aqku.png">
-        <p>Saldo Total</p>
-        <p class="amount">S/. <span> <?php echo  $_SESSION['saldoactualUsuario']  ?> </span></p>
-        <div class="btn-group text-center">
-            <button type="button" class="form_submit2">Agregar</button>
-            <button type="button" class="form_submit2">Retirar</button>
-        </div>
-    </div>
-
-</div>
-
-
+ 
 
 
 <div class="form_group">
 
     <div class="txt-history">
-        <p><b>Transacciones</b></p>
+        
         <!--Comentario-->
 
-        <?php foreach ($this->MODEL->HistorialTOP3($_SESSION['idUsuario']) as $new) : ?>
+        <?php foreach ($this->MODEL->Historial($_SESSION['idUsuario']) as $new) : ?>
             <p class="txn-list">
                 <?php
                 if ($new->condiccionTexto == "Retiro") {
@@ -63,7 +49,8 @@ if (!isset($_SESSION)) {
 </div>
 
 
-
-
-
 <?php include_once('barrita/footer.php'); ?>
+
+
+
+ 

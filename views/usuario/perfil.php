@@ -1,10 +1,9 @@
 <?php
-    if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
-         
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +20,7 @@
 </head>
 
 <body>
-    
+
 
     <form class="form">
         <p class="page-title">Perfil</p>
@@ -33,75 +32,24 @@
         <div class="form_container">
             <div class="form_group">
                 <input type="text" id="name" class="texto_perfil" placeholder=" " disabled="disabled">
-   <label for="name" class="form_label_perfil"><span class="bi bi-person-fill">  <?php  echo  $_SESSION['nombreUsuario']    ?>  </span></label>
-   
-   
+                <label for="name" class="form_label_perfil"><span class="bi bi-person-fill"> <?php echo  $_SESSION['nombreUsuario']    ?> </span></label>
+
+
             </div>
 
             <div class="form_group">
-                <input type="text"   class="texto_perfil" placeholder=" " disabled="disabled">
-                <label for="name" class="form_label_perfil"><span class="bi bi-xbox"> <?php  echo   $_SESSION['dniUsuario']   ?> </span></label>
+                <input type="text" class="texto_perfil" placeholder=" " disabled="disabled">
+                <label for="name" class="form_label_perfil"><span class="bi bi-xbox"> <?php echo   $_SESSION['dniUsuario']   ?> </span></label>
             </div>
 
 
             <div class="form_group">
                 <input type="text" id="name" class="texto_perfil" placeholder=" " disabled="disabled">
-                <label for="name" class="form_label_perfil"><span class="bi bi-envelope"> <?php  echo   $_SESSION['correoUsuario']    ?> </span></label>
+                <label for="name" class="form_label_perfil"><span class="bi bi-envelope"> <?php echo   $_SESSION['correoUsuario']    ?> </span></label>
             </div>
 
             <input type="submit" class="form_submit" value="Depositar">
         </div>
         &nbsp;
 
-        <div class="navigation">
-            <ul>
-                <li class="list active">
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                        <span class="text">Home</span>
-                    </a>
-                </li>
-
-                <li class="list">
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
-                        </span>
-                        <span class="text">Perfil</span>
-                    </a>
-                </li>
-
-                <li class="list">
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                        <span class="text">Setting</span>
-                    </a>
-                </li>
-                
-                <li class="list">
-                    
-                    <a href="?c=cerrarSesion">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="text">Salir</span>
-                    </a>
-                </li>
-                <div class="indicator"></div>
-            </ul>
-        </div>
-
-    </form>
-
-
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-</body>
-
-</html>
+        <?php include_once('barrita/footer.php'); ?>

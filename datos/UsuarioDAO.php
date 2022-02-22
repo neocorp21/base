@@ -46,7 +46,7 @@ class UsuarioDAO
           $data->getNombre(),
           $data->getDni()
         )
-
+      //  $data->null;
       );
 
       return $stm;
@@ -85,14 +85,40 @@ class UsuarioDAO
       if ($rows > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         session_start();
+        $_SESSION['idUsuario'] = $row['idusuario'];
         $_SESSION['nombreUsuario'] = $row['nombre'];
         $_SESSION['correoUsuario'] = $row['correo'];
         $_SESSION['dniUsuario'] = $row['dni'];
-        
+        $_SESSION['saldoactualUsuario'] = $row['saldoactual'];
+        $_SESSION['saldoaquUsuario'] = $row['saldoaqu'];
       }else
       {
         header('Location: index.php?c=iniciarSesion');
       }
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+
+  public function HistorialTOP3($idusuario)
+  {
+    try {
+      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC LIMIT 3 " ;
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_OBJ);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+  public function Historial($idusuario)
+  {
+    try {
+      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC  " ;
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_OBJ);
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -120,4 +146,7 @@ class UsuarioDAO
     ';
     echo $resultado;
   }
+
+
+
 }
