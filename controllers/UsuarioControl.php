@@ -2,10 +2,10 @@
 
 //IMPORTANDO datos-Consulta SQL
 include_once('./datos/UsuarioDAO.php');
-
+include_once('./datos/ProcesoDAO.php');
 //IMPORTANDO MODELOS-ENTIDAD
 include_once('./models/Usuario.php');
-
+include_once('./models/Proceso.php');
 
 class UsuarioControl
 {
@@ -46,9 +46,6 @@ class UsuarioControl
     include_once('views/administrador/index.php');
   }
 
-
-
-
   //GUARDAR 
   public function guardar()
   {
@@ -83,6 +80,43 @@ class UsuarioControl
       throw $th;
     }
   }
+
+   //GUARDAR 
+   public function guardarProceso()
+   {
+ 
+     try {
+       $alm = new ProcesoClass(); //INSTANCIA DE MI CLASE EntiedadClass para el uso de metodos set
+      /*
+       $alm->setCorreo($_POST['txtcorreo']);
+       $alm->setClave($_POST['txtclave']);
+       $alm->setNombre($_POST['txtnombre']);
+       $alm->setdni($_POST['txtdni']);
+       $alm->setSaldoActual(0);
+       $alm->setSaldoAqu(0);
+       */
+       $correo = $_POST['txtcorreo'];
+       $resultado = $this->MODEL->CorreoExiste($correo);
+ 
+       if ($resultado != true) {
+         $resultado1 = $this->MODEL->registrar($alm);
+         if ($resultado1) {
+           $msg = "Correctamente";
+           echo $this->MODEL->success($msg);
+          // include_once('views/usuario/lista.php');
+         } else {
+           $msg = "No se guardo el archivo";
+           echo $this->MODEL->error($msg);
+         }
+       } else {
+         $msg = "correo existe";
+         echo $this->MODEL->error($msg);
+         include_once('views/usuario/registrar.php');
+       }
+     } catch (\Throwable $th) {
+       throw $th;
+     }
+   }
 
   public function Log()
   {
