@@ -1,4 +1,4 @@
-
+ 
 <?php
 
 include_once('controllers/UsuarioControl.php');
@@ -17,3 +17,4 @@ if(!isset($_REQUEST['c'])){//si no existe la ruta ,cargamos por defecto index
    call_user_func(array($controller , $peticion));
 }
 
+ 

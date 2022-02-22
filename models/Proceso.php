@@ -82,7 +82,7 @@ class ProcesoClass
     {
         return $this->foto;
     }
-    function setSaldoActual($foto)
+    function setFoto($foto)
     {
         $this->foto = $foto;
     }

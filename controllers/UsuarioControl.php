@@ -1,22 +1,29 @@
 <?php
+if (!isset($_SESSION)) {
+  session_start();
+}
+?>
+<?php
 
 //IMPORTANDO datos-Consulta SQL
 include_once('./datos/UsuarioDAO.php');
- 
+include_once('./datos/ProcesoDAO.php');
 //IMPORTANDO MODELOS-ENTIDAD
 include_once('./models/Usuario.php');
- 
+include_once('./models/Proceso.php');
+
+
 
 class UsuarioControl
 {
 
   public $MODEL;
-
+  public $MODEL1;
 
   public function __construct()
   {
     $this->MODEL = new UsuarioDAO(); //INSTANCIA DE SQL
-    
+    $this->MODEL1 = new ProcesoDAO(); //INSTANCIA DE SQL
   }
 
   public function iniciarSesion() //Cliente
@@ -28,7 +35,7 @@ class UsuarioControl
   {
     include_once('views/usuario/registrar.php');
   }
-   
+
   public function perfil() //Cliente
   {
     include_once('views/usuario/perfil.php');
@@ -42,6 +49,12 @@ class UsuarioControl
   {
     include_once('views/usuario/tablero.php');
   }
+  public function deposito() //Cliente
+  {
+    include_once('views/usuario/deposito.php');
+  }
+
+
 
   public function lista() //ADMIN
   {
@@ -68,7 +81,7 @@ class UsuarioControl
         if ($resultado1) {
           $msg = "Correctamente";
           echo $this->MODEL->success($msg);
-         // include_once('views/usuario/lista.php');
+          // include_once('views/usuario/lista.php');
         } else {
           $msg = "No se guardo el archivo";
           echo $this->MODEL->error($msg);
@@ -82,51 +95,43 @@ class UsuarioControl
       throw $th;
     }
   }
-/*
-   //GUARDAR 
-   public function guardarProceso()
-   {
- 
-     try {
-       $alm = new ProcesoClass(); //INSTANCIA DE MI CLASE EntiedadClass para el uso de metodos set
+
+  //GUARDAR 
+  public function guardarProceso() //Deposito
+  {
+
+    try {
+      $alm = new ProcesoClass(); //INSTANCIA DE MI CLASE EntiedadClass para el uso de metodos set
+
+      $alm->setIdusuario($_SESSION['idUsuario']);
+      $alm->setIdbanco($_POST['txtidbanco']);//txtidbanco
+      $alm->setCondiccion('Deposito');
+      $alm->setMontoProceso(0);
+      $alm->setProcesoTexto('Evaluacion');
       
-       $alm->setIdusuario($_POST['txtcorreo']);
-       $alm->setIdbanco($_POST['txtclave']);
-       $alm->setCondiccion($_POST['txtnombre']);
-       $alm->setMontoProceso($_POST['txtdni']);
-       $alm->setProcesoTexto(0);
-      // $alm->setFoto($_POST['txtdni']);
-       
-       $correo = $_POST['txtcorreo'];
-       $resultado = $this->MODEL->CorreoExiste($correo);
- 
-       if ($resultado != true) {
-         $resultado1 = $this->MODEL->registrar($alm);
-         if ($resultado1) {
-           $msg = "Correctamente";
-           echo $this->MODEL->success($msg);
-          // include_once('views/usuario/lista.php');
-         } else {
-           $msg = "No se guardo el archivo";
-           echo $this->MODEL->error($msg);
-         }
-       } else {
-         $msg = "correo existe";
-         echo $this->MODEL->error($msg);
-         include_once('views/usuario/registrar.php');
-       }
-     } catch (\Throwable $th) {
-       throw $th;
-     }
-   }
-*/
+      $alm->setFoto($_POST['txtfoto']);
+
+      $resultado1 = $this->MODEL1->registrar($alm);
+      if ($resultado1) {
+        $msg = "Correctamente";
+        echo $this->MODEL1->success($msg);
+        include_once('views/usuario/perfil.php');
+      } else {
+        $msg = "No se guardo el archivo";
+        echo $this->MODEL1->error($msg);
+      }
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
   public function Log()
   {
 
     try {
-      $correo=$_POST['txtcorreo'];
-      $clave=$_POST['txtclave'];
-      $resultado = $this->MODEL->login_($correo,$clave);
+      $correo = $_POST['txtcorreo'];
+      $clave = $_POST['txtclave'];
+      $resultado = $this->MODEL->login_($correo, $clave);
       include_once('views/usuario/billetera.php');
     } catch (\Throwable $th) {
       throw $th;
@@ -136,12 +141,9 @@ class UsuarioControl
 
   public function cerrarSesion()
   {
-
+    
     session_start();
     session_destroy();
     include_once('views/usuario/iniciarSesion.php');
-
   }
-
- 
 }

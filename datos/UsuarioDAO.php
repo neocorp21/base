@@ -32,7 +32,29 @@ class UsuarioDAO
     }
   }
 
+  public function listarBanco()
+  {
+    try {
+      $query = "SELECT * FROM banco";
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_OBJ);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 
+  public function buscarNumeroBanco($idbanco)
+  {
+    try {
+      $query = "SELECT * FROM banco where idbanco=$idbanco";
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_OBJ);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
   public function registrar(UsuarioClass $data)
   {
 
@@ -99,7 +121,17 @@ class UsuarioDAO
       throw $th;
     }
   }
-
+  public function SaldoActual($idusuario)
+  {
+    try {
+      $query = "SELECT * FROM usuario WHERE idusuario=$idusuario " ;
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_OBJ);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 
   public function HistorialTOP3($idusuario)
   {

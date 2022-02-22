@@ -13,15 +13,23 @@ if (!isset($_SESSION)) {
     <div class="amount-box text-center">
         <img src="imagenes/logo_aqku.png">
         <p>Saldo Total</p>
-        <p class="amount">S/. <span> <?php echo  $_SESSION['saldoactualUsuario']  ?> </span></p>
+        <p class="amount">S/. <span>
+
+
+
+                <?php foreach ($this->MODEL->SaldoActual($_SESSION['idUsuario']) as $new) : ?>
+
+                    <td><?php echo $new->saldoactual; ?></td>
+                <?php endforeach; ?>
+
+            </span></p>
         <div class="btn-group text-center">
-            <button type="button" class="form_submit2">Agregar</button>
+            <button type="button" class="form_submit2" onclick="window.location.href='index.php?c=deposito'" >Agregar</button>
             <button type="button" class="form_submit2">Retirar</button>
         </div>
     </div>
 
 </div>
-
 
 
 
