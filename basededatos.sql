@@ -17,23 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de datos: `basededatos`
---
-
-DELIMITER $$
---
--- Procedimientos
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GenerarDetalle` (IN `idpedidop` INT, IN `idempleadop` INT, IN `descripcionp` VARCHAR(250))  BEGIN
-	INSERT INTO detalle (idpedido, idempleado, descripcion,entrega ) VALUES (idpedidop, idempleadop,descripcionp,"Pediente" );
- 
-     update pedido set estado='3' where idpedido=idpedidop;
-END$$
-
-DELIMITER ;
-
--- --------------------------------------------------------
+ -----------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `administrador`

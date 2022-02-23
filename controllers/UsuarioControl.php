@@ -7,10 +7,11 @@ include_once('./datos/ProcesoDAO.php');
 //IMPORTANDO MODELOS-ENTIDAD
 include_once('./models/Usuario.php');
 include_once('./models/Proceso.php');
+/*
 if (!isset($_SESSION)) {
   session_start();
 }
-
+*/
 
 
 class UsuarioControl

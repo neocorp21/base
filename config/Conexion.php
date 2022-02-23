@@ -13,7 +13,7 @@ class Conexion
 
 
 
-
+/*
   private $configuracion = [
     'drive'    => 'mysql',
     'host'     => 'localhost',
@@ -24,18 +24,18 @@ class Conexion
     'charset'  => 'utf8mb4'
   ];
 
-  /*
+   
+*/
 private $configuracion = [
   'drive'    => 'mysql',
   'host'     => '162.241.169.207',
   'database' => 'aqkupe_web-jesus',
   'port'     => '3306',
-  'username' => 'nuevo',
-  'password' => ')vTQkh1[7@IkvmLw',
+  'username' => 'aqkupe_nuevo',
+  'password' => 'uz%(m.(,FYhU',
   'charset'  => 'utf8mb4'
  ];
-
-*/
+ 
   //constructor
   public function __construct()
   {
