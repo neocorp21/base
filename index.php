@@ -1,20 +1,13 @@
- 
-<?php
-
-include_once('controllers/UsuarioControl.php');
-
-//OPCIONALES
-include_once('config/Conexion.php');
-include_once('datos/UsuarioDAO.php');
-
-
-$controller = new UsuarioControl();//clase del controlador
-
-if(!isset($_REQUEST['c'])){//si no existe la ruta ,cargamos por defecto index
-   $controller->iniciarSesion();
-} else {                  //si hay peticiones pintamos el archivo solicitado
-   $peticion = $_REQUEST['c'];
-   call_user_func(array($controller , $peticion));
-}
-
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <a href="indexAdmin.php">Admin</a>
+   <a href="indexUsuario.php">usuario</a>
+</body>
+</html>

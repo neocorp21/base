@@ -5,32 +5,41 @@
 	<div class="col-12 col-lg-12 col-xxl-12 d-flex">
 		<div class="card flex-fill">
 			<div class="card-header">
-				<h1 class="text-center text-danger">Listado de Clientes</h1>
+				<h1 class="text-center text-danger"> Evaluacion de deposito</h1>
 			</div>
 
 
 			<table class="table table-hover my-0">
 				<thead>
 					<tr>
-						<th class="d-none d-xl-table-cell">ID</th>
-						<th class="d-none d-xl-table-cell">DNI</th>
+						<th class="d-none d-xl-table-cell">idProceso</th>
+						<th class="d-none d-xl-table-cell">idusuario</th>
 						<th class="d-none d-xl-table-cell">Nombre</th>
 						<th class="d-none d-xl-table-cell">Correo</th>
-						<th class="d-none d-xl-table-cell">Saldo Soles </th>
-						<th class="d-none d-md-table-cell">Saldo Aqu</th>
+						<th class="d-none d-xl-table-cell">Accion</th>
 					</tr>
 				</thead>
 				<tbody>
-	  <?php foreach ($this->MODEL->listar() as $new) : ?>
-          <tr>
-            <td><?php echo $new->idusuario; ?></td>
-			<td><?php echo $new->nombre; ?></td>
-			<td><?php echo $new->dni; ?></td>
-			<td><?php echo $new->correo; ?></td>
-			<td><?php echo $new->saldoactual; ?></td>
-			<td><?php echo $new->saldoaqu; ?></td>
-          </tr>
-        <?php endforeach; ?>
+					<?php foreach ($this->MODEL->listarProcesoVerificar() as $new) : ?>
+						<tr>
+							<td><?php echo $new->idproceso; ?></td>
+							<td><?php echo $new->idusuario; ?></td>
+							<td><?php echo $new->nombre; ?></td>
+							<td><?php echo $new->correo; ?></td>
+
+
+							<td>
+								<form method="post" action="?c=procesarHistorial">
+
+									<?php echo '<input type="hidden" name="txtidproceso" id="txtidproceso"   value="' . $new->idproceso . '">'; ?>
+
+									<button type="submit" class="btn btn-primary">Evaluar</button>
+
+								</form>
+							</td>
+
+						</tr>
+					<?php endforeach; ?>
 
 				</tbody>
 			</table>

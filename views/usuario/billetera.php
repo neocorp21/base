@@ -1,10 +1,11 @@
-<?php include_once('barrita/header.php'); ?>
 <?php
 if (!isset($_SESSION)) {
     session_start();
 }
 
 ?>
+<?php include_once('barrita/header.php'); ?>
+ 
 
 
 
@@ -24,7 +25,7 @@ if (!isset($_SESSION)) {
 
             </span></p>
         <div class="btn-group text-center">
-            <button type="button" class="form_submit2" onclick="window.location.href='index.php?c=deposito'" >Agregar</button>
+            <button type="button" class="form_submit2" onclick="window.location.href='indexUsuario.php?c=deposito'" >Agregar</button>
             <button type="button" class="form_submit2">Retirar</button>
         </div>
     </div>

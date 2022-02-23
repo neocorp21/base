@@ -19,24 +19,8 @@ class ProcesoDAO
       throw $th;
     }
   }
-/*
-  public function listar()
-  {
-    try {
-      $query = "SELECT * FROM usuario";
-      $stm = $this->PDO->ConectarBD()->prepare($query);
-      $stm->execute();
-      return $stm->fetchAll(PDO::FETCH_OBJ);
-    } catch (\Throwable $th) {
-      throw $th;
-    }
-  }
-*/
-
   public function registrar(ProcesoClass $data)
   {
-
-
     try {
       $query = "INSERT INTO procesos ( idusuario, idbanco, condicion, montoproceso,procesoTexto, foto) VALUES ( ?, ?, ?, ?, ?, ?)";
       $stm = $this->PDO->ConectarBD()->prepare($query)->execute(
@@ -48,7 +32,7 @@ class ProcesoDAO
           $data->getProcesoTexto(),
           $data->getFoto()
         )
-      
+
       );
 
       return $stm;
@@ -56,77 +40,74 @@ class ProcesoDAO
       throw $th;
     }
   }
-
-/*
-  public function CorreoExiste($correo)
+  public function listarCliente()
   {
     try {
-      $query = "SELECT * FROM usuario WHERE correo='$correo'";
+      $query = "SELECT * FROM usuario";
       $stm = $this->PDO->ConectarBD()->prepare($query);
       $stm->execute();
-      if ($stm->rowcount() == 0) {
-        return false;
-      } else
-        return true;
+      return $stm->fetchAll(PDO::FETCH_OBJ);
     } catch (\Throwable $th) {
       throw $th;
     }
   }
 
+  public function listarProcesoVerificar()
+  {
+    try {
+      $query = "SELECT p.idproceso as idproceso,u.idusuario as idusuario,u.nombre as nombre,u.correo as correo ,p.foto as foto , p.montoproceso as montoproceso from procesos p 
+      inner join usuario u on p.idusuario=u.idusuario 
+      WHERE p.procesoTexto='Evaluacion'
+      
+      ";
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_OBJ);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  public function ObtenerDatosProcesoEvaluar($idproceso)
+  {
+    try {
+      $query = "SELECT  p.idproceso as idproceso,p.idusuario as idusuario,u.saldoactual as saldoAnterior,p.foto as foto FROM procesos p
+      inner JOIN usuario u on  u.idusuario=p.idusuario
+      WHERE p.idproceso=$idproceso";
+      $stm = $this->PDO->ConectarBD()->prepare($query);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_OBJ);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+
+
+
+  public function transaccion( $idproceso ,$idusuario, $saldoanterior, $montoproceso)
+  {
+    $saldoanterior= (int)$saldoanterior;
+    $montoproceso=(int)$montoproceso;
+    $saldoActulizado=$saldoanterior+$montoproceso ;
+  
+    try {
+      $stm = $this->PDO->ConectarBD();
+      $stm->beginTransaction();
  
-
-  public function login_($correo,$clave )
-  {
-    try {
-
-
-      $stmt =  $this->PDO->ConectarBD()->prepare("SELECT * FROM usuario WHERE correo='$correo'and clave='$clave'");
-       $stmt->execute();
-      $rows = $stmt->rowCount();
-
-      if ($rows > 0) {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        session_start();
-        $_SESSION['idUsuario'] = $row['idusuario'];
-        $_SESSION['nombreUsuario'] = $row['nombre'];
-        $_SESSION['correoUsuario'] = $row['correo'];
-        $_SESSION['dniUsuario'] = $row['dni'];
-        $_SESSION['saldoactualUsuario'] = $row['saldoactual'];
-        $_SESSION['saldoaquUsuario'] = $row['saldoaqu'];
-      }else
-      {
-        header('Location: index.php?c=iniciarSesion');
-      }
-    } catch (\Throwable $th) {
-      throw $th;
+      $stm->query("INSERT INTO historial (idproceso,condiccionTexto, saldoanterior, montoproceso, saldoactual) VALUES ( $idproceso, 'Deposito', $saldoanterior, $montoproceso, $saldoActulizado)");
+      $stm->query("UPDATE  procesos set procesoTexto='Aprobado' ,montoproceso=$montoproceso WHERE idproceso=$idproceso");
+      $stm->query("UPDATE  usuario set saldoactual=$saldoActulizado WHERE idusuario=$idusuario");
+      $stm->commit();
+      echo "Se han introducido los nuevos clientes";
+    } catch (Exception $e) {
+      echo "Ha habido algún error";
+      $stm->rollback();
     }
   }
 
 
-  public function HistorialTOP3($idusuario)
-  {
-    try {
-      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC LIMIT 3 " ;
-      $stm = $this->PDO->ConectarBD()->prepare($query);
-      $stm->execute();
-      return $stm->fetchAll(PDO::FETCH_OBJ);
-    } catch (\Throwable $th) {
-      throw $th;
-    }
-  }
-  public function Historial($idusuario)
-  {
-    try {
-      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC  " ;
-      $stm = $this->PDO->ConectarBD()->prepare($query);
-      $stm->execute();
-      return $stm->fetchAll(PDO::FETCH_OBJ);
-    } catch (\Throwable $th) {
-      throw $th;
-    }
-  }
 
-*/
   public function success($message = "")
   {
     $resultado = '
@@ -148,7 +129,4 @@ class ProcesoDAO
     ';
     echo $resultado;
   }
-
-
-
 }
