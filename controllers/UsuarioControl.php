@@ -7,11 +7,11 @@ include_once('./datos/ProcesoDAO.php');
 //IMPORTANDO MODELOS-ENTIDAD
 include_once('./models/Usuario.php');
 include_once('./models/Proceso.php');
-/*
+
 if (!isset($_SESSION)) {
   session_start();
 }
-*/
+
 
 
 class UsuarioControl
@@ -141,7 +141,6 @@ class UsuarioControl
 
   public function cerrarSesion()
   {
-  
     session_start();
     session_destroy();
     include_once('views/usuario/iniciarSesion.php');
