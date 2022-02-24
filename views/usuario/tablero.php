@@ -38,10 +38,7 @@ if (!isset($_SESSION)) {
                 }
                 ?>
 
-
-
-
-
+ 
             </p>
 
         <?php endforeach; ?>

@@ -13,7 +13,7 @@ class Conexion
 
 
 
-/*
+/* LOCAL 
   private $configuracion = [
     'drive'    => 'mysql',
     'host'     => 'localhost',
@@ -26,15 +26,31 @@ class Conexion
 
    
 */
+/* DAVID 
 private $configuracion = [
   'drive'    => 'mysql',
-  'host'     => '162.241.169.207',
-  'database' => 'aqkupe_web-jesus',
+  'host'     => 'https://c250.ferozo.com:2092/',
+  'database' => 'c2501195_aqku',
   'port'     => '3306',
-  'username' => 'aqkupe_nuevo',
-  'password' => 'uz%(m.(,FYhU',
+  'username' => 'c2501195_aqku ',
+  'password' => 'kudaSO88wu',
   'charset'  => 'utf8mb4'
  ];
+ */
+
+
+ /* console */
+  private $configuracion = [
+    'drive'    => 'mysql',
+    'host'     => 'bxikc8mmzia4qi3h1xno-mysql.services.clever-cloud.com',
+    'database' => 'bxikc8mmzia4qi3h1xno',
+    'port'     => '3306',
+    'username' => 'uwumeljragd2auq3',
+    'password' => 'ge5kEjyzaD1TWGPLiU0F',
+    'charset'  => 'utf8mb4'
+  ];
+
+   
  
   //constructor
   public function __construct()

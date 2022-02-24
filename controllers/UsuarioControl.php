@@ -1,16 +1,15 @@
  
 <?php
-
+if (!isset($_SESSION)) {
+  session_start();
+}
 //IMPORTANDO datos-Consulta SQL
 include_once('./datos/UsuarioDAO.php');
 include_once('./datos/ProcesoDAO.php');
 //IMPORTANDO MODELOS-ENTIDAD
 include_once('./models/Usuario.php');
 include_once('./models/Proceso.php');
-
-if (!isset($_SESSION)) {
-  session_start();
-}
+ 
 
 
 
@@ -115,7 +114,8 @@ class UsuarioControl
       if ($resultado1) {
         $msg = "Correctamente";
         echo $this->MODEL1->success($msg);
-        include_once('views/usuario/perfil.php');
+        include_once('views/usuario/billetera.php');
+      //  include_once('views/usuario/perfil.php');
       } else {
         $msg = "No se guardo el archivo";
         echo $this->MODEL1->error($msg);
@@ -141,6 +141,7 @@ class UsuarioControl
 
   public function cerrarSesion()
   {
+  
     session_start();
     session_destroy();
     include_once('views/usuario/iniciarSesion.php');

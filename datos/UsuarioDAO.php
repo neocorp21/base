@@ -1,3 +1,4 @@
+
 <?php
 
 //IMPORTAMOS LA CONEXION
@@ -68,7 +69,7 @@ class UsuarioDAO
           $data->getNombre(),
           $data->getDni()
         )
-      //  $data->null;
+        //  $data->null;
       );
 
       return $stm;
@@ -95,13 +96,13 @@ class UsuarioDAO
 
 
 
-  public function login_($correo,$clave )
+  public function login_($correo, $clave)
   {
     try {
 
 
       $stmt =  $this->PDO->ConectarBD()->prepare("SELECT * FROM usuario WHERE correo='$correo'and clave='$clave'");
-       $stmt->execute();
+      $stmt->execute();
       $rows = $stmt->rowCount();
 
       if ($rows > 0) {
@@ -113,8 +114,7 @@ class UsuarioDAO
         $_SESSION['dniUsuario'] = $row['dni'];
         $_SESSION['saldoactualUsuario'] = $row['saldoactual'];
         $_SESSION['saldoaquUsuario'] = $row['saldoaqu'];
-      }else
-      {
+      } else {
         header('Location: index.php?c=iniciarSesion');
       }
     } catch (\Throwable $th) {
@@ -124,7 +124,7 @@ class UsuarioDAO
   public function SaldoActual($idusuario)
   {
     try {
-      $query = "SELECT * FROM usuario WHERE idusuario=$idusuario " ;
+      $query = "SELECT * FROM usuario WHERE idusuario=$idusuario ";
       $stm = $this->PDO->ConectarBD()->prepare($query);
       $stm->execute();
       return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -136,7 +136,7 @@ class UsuarioDAO
   public function HistorialTOP3($idusuario)
   {
     try {
-      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC LIMIT 3 " ;
+      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC LIMIT 3 ";
       $stm = $this->PDO->ConectarBD()->prepare($query);
       $stm->execute();
       return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -147,7 +147,7 @@ class UsuarioDAO
   public function Historial($idusuario)
   {
     try {
-      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC  " ;
+      $query = "Select h.condiccionTexto, h.montoproceso from historial h inner join procesos p on h.idproceso=p.idproceso where p.idusuario=$idusuario   order by idhistorial DESC  ";
       $stm = $this->PDO->ConectarBD()->prepare($query);
       $stm->execute();
       return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -160,10 +160,13 @@ class UsuarioDAO
   public function success($message = "")
   {
     $resultado = '
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Message!</strong> ' . $message . '
-         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+   
+    
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong> ' . $message . '</strong>  
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
     ';
     echo $resultado;
   }
@@ -178,7 +181,4 @@ class UsuarioDAO
     ';
     echo $resultado;
   }
-
-
-
 }
